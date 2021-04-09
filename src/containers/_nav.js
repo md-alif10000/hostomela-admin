@@ -51,39 +51,8 @@ const _nav = [
 		to: "/categories",
 		icon: <CIcon name='cil-speedometer' customClasses='c-sidebar-nav-icon' />,
 	},
-	{
-		_tag: "CSidebarNavItem",
-		name: "Recharges",
-		to: "/recharges",
-		icon: <CIcon name='cil-speedometer' customClasses='c-sidebar-nav-icon' />,
-	},
-	{
-		_tag: "CSidebarNavDropdown",
-		name: "Tickets",
-		route: "/tickets",
-		icon: "cil-puzzle",
-		_children: [
-			{
-				_tag: "CSidebarNavItem",
-				name: "All Products",
-				to: "/all-tickets",
-			},
-			{
-				_tag: "CSidebarNavItem",
-				name: "Add New Product",
-				to: "/add-new-ticket",
-			},
-			{
-				_tag: "CSidebarNavItem",
-				name: "Stocked Out",
-				to: "/booked-ticket",
-				badge: {
-					color: "danger",
-					text: "Booked",
-				},
-			},
-		],
-	},
+
+
 
 	{
 		_tag: "CSidebarNavItem",

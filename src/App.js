@@ -4,7 +4,7 @@ import './scss/style.scss';
 import PrivateRoute from "./components/HOC/PrivateRoute";
 import { useDispatch, useSelector } from "react-redux";
 import { getInitialData, isUserLoggedIn } from "./actions";
-import { getAllRecharges } from "./actions/recharge.action";
+
 const loading = (
   <div className="pt-3 text-center">
     <div className="sk-spinner sk-spinner-pulse"></div>
@@ -33,7 +33,7 @@ function App (props) {
 		}
 		if(auth.authenticate){
 			dispatch(getInitialData());
-      			dispatch(getAllRecharges());
+      		
 		}
 		
 	}, [auth.authenticate]);

@@ -6,7 +6,6 @@ import orderReducer from "./order.reducer";
 import categoryReducer from "./category.reducer";
 import pageReducer from "./page.reducer.js";
 import getUsersReducer from './getUsers.reducer'
-import rechargeReducer from './recharges.reducer'
  import sidebar from './sedebar.reducer'
  import couponReducer from './coupon.reducer'
 
@@ -22,7 +21,6 @@ const rootReducer = combineReducers({
 	page: pageReducer,
 	order: orderReducer,
 	AllUsers: getUsersReducer,
-	recharges: rechargeReducer,
 	coupons: couponReducer,
 });
 
