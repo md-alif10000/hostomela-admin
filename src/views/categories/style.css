@@ -1,0 +1,29 @@
+.modal-header{
+    padding: 5px 15px;
+    background-color: #333;
+
+}
+
+.modal-title{
+    font-size: 18px;
+    color: aliceblue;
+}
+.modal-footer{
+    padding:5px 15px
+}
+.close{
+    color: aliceblue;
+}
+.close:hover{
+    color: aliceblue;
+}
+.actionBtnContainer{
+
+    display: flex;
+    align-items: center;
+}
+.actionBtnContainer > button{
+   border-radius: 5px;
+    margin: 0 5px;
+
+}
