@@ -1,27 +1,15 @@
 {
-  "name": "Ecommerce",
+  "name": "Hostomela Admin",
   "version": "1.0.0",
   "description": "",
   "author": {
-    "name": "ADMIN APP",
+    "name": "Md Alif",
     "url": "https://coreui.io",
     "github": "https://github.com/coreui",
     "twitter": "https://twitter.com/core_ui"
   },
-  "contributors": [
-    {
-      "name": "CoreUI Team",
-      "url": "https://github.com/orgs/coreui/people"
-    }
-  ],
-  "homepage": ".",
-  "copyright": "Copyright 2017-2020 creativeLabs Łukasz Holeczek",
-  "license": "MIT",
-  "private": true,
-  "repository": {
-    "type": "git",
-    "url": "git@github.com:coreui/coreui-free-react-admin-template.git"
-  },
+
+
   "dependencies": {
     "@coreui/coreui": "^3.4.0",
     "@coreui/icons-react": "^1.0.2",
