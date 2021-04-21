@@ -16,6 +16,7 @@ import {
 import { Redirect } from "react-router";
 
 
+
 //  export function productPicture(files) {
 //    setProductPictures(files);
 //  }
@@ -33,6 +34,15 @@ export default function AddNewProducts(props) {
 	const [highlight3, setHighlight3] = useState();
 	const [highlight4, setHighlight4] = useState();
 	const [highlight5, setHighlight5] = useState();
+	const [productType, setProductType] = useState('')
+	const [size, setSize] = useState('')
+	const [sizePrice, setSizePrice] = useState()
+	const [sizes, setSizes] = useState([]);
+
+	const [colors, setColors] = useState([])
+	const [colorName, setColorName] = useState('')
+	const [colorCode, setColorCode] = useState('');
+	// const [highlights, setHighlights] = useState([])
 	const highlights = [
 		highlight1,
 		highlight2,
@@ -72,8 +82,9 @@ export default function AddNewProducts(props) {
 		form.append("quantity", quantity);
 		form.append("price", price);
 		form.append("description", description);
+		form.append('highlights',highlights)
 		form.append("category", categoryId);
-		form.append("highlights", highlights);
+
 
 		for (let pic of productPictures) {
 			form.append("productPicture", pic);
@@ -110,6 +121,22 @@ export default function AddNewProducts(props) {
 	const handleProductPictures = (e) => {
 		setProductPictures([...productPictures, e.target.files[0]]);
 	};
+	const sizeHandler=(e)=>{
+		e.preventDefault()
+		setSizes([...sizes, { size, price: parseInt(sizePrice) }]);
+		setSize('')
+		setSizePrice('')
+		console.log(sizes)
+	}
+		const colorHandler = (e) => {
+			e.preventDefault();
+			setColors([...colors, { colorName, code: colorCode }]);
+			setColorName("");
+			setColorCode("");
+			console.log(colors);
+		};
+
+	console.log(highlights)
 
 	const createCategoryList = (categories, options = []) => {
 		for (let category of categories) {
@@ -164,7 +191,7 @@ export default function AddNewProducts(props) {
 							/>
 						</div>
 					</div>
-					<div className='row mt-5 mb-5'>
+					{/* <div className='row mt-5 mb-5'>
 						<div className='col'>
 							<TextField
 								value={description}
@@ -177,7 +204,7 @@ export default function AddNewProducts(props) {
 								fullWidth
 							/>
 						</div>
-					</div>
+					</div> */}
 
 					<div>
 						<TextField
@@ -216,6 +243,94 @@ export default function AddNewProducts(props) {
 							fullWidth
 						/>
 					</div>
+					<div>
+						<h4>Select Product Type</h4>
+						<select
+							value={productType}
+							onChange={(e) => setProductType(e.target.value)}
+							className='input'>
+							<option selected value=''>
+								Select Product Type
+							</option>
+							<option value='sharee'>Sharee</option>
+							<option value='other'>Other</option>
+							<option value='non-variation'>Non variation</option>
+						</select>
+					</div>
+
+					{productType == "other" ? (
+						<div>
+							<h3>Add Sizes</h3>
+							<div>
+								{sizes.map((item, index) => (
+									<p key={index}>
+										Size :{item.size} Price: {item.price}
+									</p>
+								))}
+							</div>
+
+							<div>
+								<input
+									type='text'
+									className='input m-2'
+									placeholder='size 1'
+									width='100px'
+									value={size}
+									style={{ width: "100px" }}
+									onChange={(e) => setSize(e.target.value)}
+								/>
+								<input
+									type='number'
+									style={{ width: "100px" }}
+									placeholder='price'
+									value={sizePrice}
+									onChange={(e) => setSizePrice(e.target.value)}
+								/>
+								<button
+									className='btn btn-primary btn-sm m-2'
+									onClick={sizeHandler}>
+									Add size
+								</button>
+							</div>
+						</div>
+					) : null}
+
+					{productType == "sharee" ? (
+						<div>
+							<h3>Colors</h3>
+							<div>
+								{colors.map((color, index) => (
+									<div key={index}>
+										{console.log(color)}
+										<p>
+											Color-{index + 1}- {color.colorName}{" "}
+											<input type='color' value={color.code} />{" "}
+										</p>
+									</div>
+								))}
+							</div>
+
+							<div className='m-1'>
+								<input
+									type='text'
+									placeholder='color name'
+									value={colorName}
+									onChange={(e) => setColorName(e.target.value)}
+								/>
+								<input
+									type='color'
+									value={colorCode}
+									onChange={(e) => setColorCode(e.target.value)}
+								/>
+								<button
+									className='btn btn-sm btn-primary m-2'
+									onClick={colorHandler}>
+									Add color
+								</button>
+							</div>
+						</div>
+					) : null}
+
 					<div className='text-center mb-4'>
 						<FormControl className={classes.formControl}>
 							<InputLabel fullWidth id='demo-controlled-open-select-label'>
@@ -251,6 +366,7 @@ export default function AddNewProducts(props) {
 							onChange={handleProductPictures}
 							multiple
 						/>
+						{/* <button className='btn btn-sm btn-danger' onClick={(e)=>{e.preventDefault(); setProductPictures([])}}>Remove</button> */}
 					</div>
 
 					<div className='text-center mb-5'>
