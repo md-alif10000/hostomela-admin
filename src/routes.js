@@ -6,9 +6,9 @@ import React from 'react';
 
 const Dashboard = React.lazy(() => import('./views/dashboard/Dashboard'));
 
-const User = React.lazy(() => import('./views/users/User'));
+const User = React.lazy(() => import('./views/users/Users'));
 const AllProducts = React.lazy(() => import("./views/products/AllProducts/index"));
-const AddNewProducts = React.lazy(() => import("./views/products/AddNewProducts/index2"));
+const AddNewProducts = React.lazy(() => import("./views/products/AddNewProducts"));
 const Categories = React.lazy(() =>import("./views/categories"));
 const Orders = React.lazy(() =>import("./views/orders/index2"));
 const Coupons = React.lazy(() => import("./views/coupons/index"));
