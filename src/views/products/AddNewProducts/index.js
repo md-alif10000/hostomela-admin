@@ -24,6 +24,8 @@ import { Redirect } from "react-router";
 
 export default function AddNewProducts(props) {
 	const [productPictures, setProductPictures] = useState([]);
+	const [image, setImage] = useState(null)
+	const [picture1, setPicture1] = useState(null)
 	const [name, setName] = useState("");
 	const [quantity, setQuantity] = useState("");
 	const [price, setPrice] = useState("");
@@ -39,13 +41,11 @@ export default function AddNewProducts(props) {
 	const [size, setSize] = useState("");
 	const [sizePrice, setSizePrice] = useState();
 	const [sizes, setSizes] = useState([]);
-	// const [color1, setColor1] = useState({ colorName: "", code: "" });
 	const [colorName, setColorName] = useState('')
 	const [colorCode, setColorCode] = useState('');
 
 	const [colors, setColors] = useState([]);
 
-	// const [highlights, setHighlights] = useState([])
 	const highlights = [
 		highlight1,
 		highlight2,
@@ -70,6 +70,12 @@ export default function AddNewProducts(props) {
 
 	const classes = useStyles();
 
+
+
+		const handleProductPictures = (e) => {
+			setProductPictures([...productPictures, e.target.files[0]]);
+		};
+
 	// const productPictures = [];
 
 	// const updateFilesCb = (file) => {
@@ -78,7 +84,11 @@ export default function AddNewProducts(props) {
 	//   console.log(productPictures);
 	// };
 
+
+
 	const submitProductForm = () => {
+		console.log(productPictures)
+
 		const form = new FormData();
 
 		form.append("name", name);
@@ -86,20 +96,20 @@ export default function AddNewProducts(props) {
 		form.append("price", price);
 		form.append("description", description);
 		form.append("category", categoryId);
-
-		for (let pic of productPictures) {
-			form.append("productPicture", pic);
-		}
-
+		form.append("colors", JSON.stringify(colors));
+		form.append("sizes", JSON.stringify(sizes));
 		for (let highlight of highlights) {
 			form.append("highlights", highlight);
 		}
 
 
-			form.append("colors", JSON.stringify(colors));
+		for (let pic of productPictures) {
+			console.log(pic)
+			form.append("productPicture", pic);
+		}
 
+		
 
-			form.append("sizes", JSON.stringify(sizes));
 	
 
 		if (name == "")
@@ -113,6 +123,8 @@ export default function AddNewProducts(props) {
 			return Swal.fire("Oops...", "<h3>Price is required..!</h3>", "error");
 		if (quantity == "")
 			return Swal.fire("Oops...", "Quantity is required..!", "error");
+		if (productPictures.length  == 0)
+					return Swal.fire("Oops...", "Add product Image.!", "error");
 
 		dispatch(addProduct(form));
 		setName("");
@@ -123,27 +135,24 @@ export default function AddNewProducts(props) {
 		setProductPictures([]);
 	};
 
-	const handleProductPictures = (e) => {
-		setProductPictures([...productPictures, e.target.files[0]]);
-	};
+
 	const sizeHandler = (e) => {
 		e.preventDefault();
 		setSizes([...sizes, { size, price: parseInt(sizePrice) }]);
 		setSize("");
 		setSizePrice("");
-		console.log(sizes);
+
 	};
 	const colorHandler = (e) => {
 		e.preventDefault();
 		setColors([...colors, { colorName, code: colorCode }]);
 		setColorName("");
 		setColorCode("");
-		// console.log(color1);
-		// setColors([color1]);
-		console.log(colors);
+
+
 	};
 
-	console.log(highlights);
+
 
 	const createCategoryList = (categories, options = []) => {
 		for (let category of categories) {
@@ -155,6 +164,12 @@ export default function AddNewProducts(props) {
 
 		return options;
 	};
+
+
+
+
+
+	
 
 	if (!auth.authenticate) return <Redirect to={"/login"} />;
 
@@ -198,20 +213,6 @@ export default function AddNewProducts(props) {
 							/>
 						</div>
 					</div>
-					{/* <div className='row mt-5 mb-5'>
-						<div className='col'>
-							<TextField
-								value={description}
-								onChange={(e) => setDescription(e.target.value)}
-								id='outlined-multiline-static'
-								label='Description'
-								multiline
-								rows={8}
-								variant='outlined'
-								fullWidth
-							/>
-						</div>
-					</div> */}
 
 					<div>
 						<TextField
@@ -372,15 +373,22 @@ export default function AddNewProducts(props) {
 							</Select>
 						</FormControl>
 					</div>
-					{/* <FileUpload updateFilesCb={updateFilesCb}></FileUpload> */}
+					{productPictures.length > 0
+						? productPictures.map((pic, index) => (
+								<div key={index}>{pic.name}</div>
+						  ))
+						: null}
+
 					<div style={{ margin: "50px", textAlign: "center" }}>
 						<input
 							type='file'
+							value={image}
 							name='productPicture'
 							onChange={handleProductPictures}
-							multiple
+							className='productImageUpload'
 						/>
-						{/* <button className='btn btn-sm btn-danger' onClick={(e)=>{e.preventDefault(); setProductPictures([])}}>Remove</button> */}
+
+						<button className='btn btn-sm btn-danger fileClear' onClick={(e)=>{e.preventDefault(); setImage(''); setProductPictures([])}} >Remove</button>
 					</div>
 
 					<div className='text-center mb-5'>

@@ -66,30 +66,25 @@ const _nav = [
 		to: "/coupons",
 		icon: "cil-puzzle",
 	},
-	{
-		_tag: "CSidebarNavItem",
-		name: "Gift Cards",
-		to: "/gift_card",
-		icon: "cil-puzzle",
-	},
-	{
-		_tag: "CSidebarNavDropdown",
-		name: "Sliders",
-		route: "/sliders",
-		icon: "cil-puzzle",
-		_children: [
-			{
-				_tag: "CSidebarNavItem",
-				name: "Customers",
-				to: "/slider/home",
-			},
-			{
-				_tag: "CSidebarNavItem",
-				name: "Admins",
-				to: "/slider/products",
-			},
-		],
-	},
+
+	// {
+	// 	_tag: "CSidebarNavDropdown",
+	// 	name: "Sliders",
+	// 	route: "/sliders",
+	// 	icon: "cil-puzzle",
+	// 	_children: [
+	// 		{
+	// 			_tag: "CSidebarNavItem",
+	// 			name: "Customers",
+	// 			to: "/slider/home",
+	// 		},
+	// 		{
+	// 			_tag: "CSidebarNavItem",
+	// 			name: "Admins",
+	// 			to: "/slider/products",
+	// 		},
+	// 	],
+	// },
 
 	{
 		_tag: "CSidebarNavDropdown",

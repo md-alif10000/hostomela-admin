@@ -8,8 +8,6 @@
     "github": "https://github.com/coreui",
     "twitter": "https://twitter.com/core_ui"
   },
-
-
   "dependencies": {
     "@coreui/coreui": "^3.4.0",
     "@coreui/icons-react": "^1.0.2",

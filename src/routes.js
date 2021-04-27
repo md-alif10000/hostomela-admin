@@ -10,7 +10,7 @@ const User = React.lazy(() => import('./views/users/Users'));
 const AllProducts = React.lazy(() => import("./views/products/AllProducts/index"));
 const AddNewProducts = React.lazy(() => import("./views/products/AddNewProducts"));
 const Categories = React.lazy(() =>import("./views/categories"));
-const Orders = React.lazy(() =>import("./views/orders/index2"));
+const Orders = React.lazy(() =>import("./views/orders"));
 const Coupons = React.lazy(() => import("./views/coupons/index"));
 const GiftCard = React.lazy(() => import("./views/giftCard/index"));
 
