@@ -22,6 +22,7 @@ import {
   TheHeaderDropdownNotif,
   TheHeaderDropdownTasks
 }  from './index'
+import { logout } from 'src/actions'
 
 const TheHeader = () => {
   const dispatch = useDispatch()
@@ -65,12 +66,13 @@ const TheHeader = () => {
         </CHeaderNavItem>
       </CHeaderNav>
 
-      <CHeaderNav className="px-3">
+      {/* <CHeaderNav className="px-3">
         <TheHeaderDropdownNotif/>
         <TheHeaderDropdownTasks/>
         <TheHeaderDropdownMssg/>
         <TheHeaderDropdown/>
-      </CHeaderNav>
+      </CHeaderNav> */}
+      <button className='btn btn-primary px-4' onClick={()=>dispatch(logout())}>Logout </button>
 
       <CSubheader className="px-3 justify-content-between">
         <CBreadcrumbRouter 

@@ -3,7 +3,7 @@ import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import './scss/style.scss';
 import PrivateRoute from "./components/HOC/PrivateRoute";
 import { useDispatch, useSelector } from "react-redux";
-import { getInitialData, isUserLoggedIn } from "./actions";
+import { getInitialData, isUserLoggedIn, logout } from "./actions";
 
 const loading = (
   <div className="pt-3 text-center">
@@ -31,6 +31,9 @@ function App (props) {
 		if (!auth.authenticate) {
 			dispatch(isUserLoggedIn());
 		}
+    if (auth.user.role==='user') {
+					dispatch(logout());
+				}
 		if(auth.authenticate){
 			dispatch(getInitialData());
       		

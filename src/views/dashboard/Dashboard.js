@@ -25,6 +25,7 @@ const Dashboard = () => {
   }, [auth.authenticate]);
 
   if (!auth.authenticate) return <Redirect to={"/login"} />;
+    // if (auth.user.role=='user') return <Redirect to={"/login"} />;
   return (
     <>
       <WidgetsDropdown />
